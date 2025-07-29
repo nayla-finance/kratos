@@ -51,16 +51,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set container metadata and create job output
-        run: |
-          echo '${{ steps.meta.outputs.json }}' > job_output.json
-
-      - name: Upload job output
-        uses: actions/upload-artifact@v4
-        with:
-          name: build_output
-          path: job_output.json
-
       - name: Build and Push Multi-Architecture Image
         id: docker_build
         uses: docker/build-push-action@v6
